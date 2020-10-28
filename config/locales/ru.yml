@@ -32,3 +32,12 @@ ru:
   app:
     name: 'Шашлыки'
     company: 'Хороший программист'
+
+  vievs:
+    events:
+      are_you_sure: 'Вы уверены ?'
+
+  error:
+    one: '%{count} ошибка'
+    few: '%{count} ошибки'
+    many: '%{count} ошибок'

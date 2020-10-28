@@ -6,7 +6,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use gem Devise
 gem 'devise'
 gem 'devise-i18n'
-gem 'russian'
+gem 'rails-i18n'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
