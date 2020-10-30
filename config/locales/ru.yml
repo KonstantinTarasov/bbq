@@ -38,7 +38,8 @@ ru:
     name: 'Шашлыки'
     company: 'Хороший программист'
 
-  vievs:
-    events:
+
+  events:
+    show:
       are_you_sure: 'Вы уверены ?'
 
