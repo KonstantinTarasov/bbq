@@ -18,6 +18,11 @@ ru:
         address: 'Место проведения'
         datetime: 'Дата и время'
         description: 'Описание'
+      validates:
+        error:
+          one: 'Найдена %{count} ошибка.'
+          few: 'Найдены %{count} ошибки.'
+          many: 'Найдено %{count} ошибок.'
 
    # Перевод сообщений, которые отправляет контроллер
   controllers:
@@ -37,7 +42,3 @@ ru:
     events:
       are_you_sure: 'Вы уверены ?'
 
-  error:
-    one: '%{count} ошибка'
-    few: '%{count} ошибки'
-    many: '%{count} ошибок'
