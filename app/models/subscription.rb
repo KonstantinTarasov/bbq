@@ -14,7 +14,11 @@ class Subscription < ApplicationRecord
   # для данного event_id один email может использоваться только один раз (если нет юзера, анонимная подписка)
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
 
+  # юзера нельзя подписываться на свои же события
   validate :user_author, if: -> { user.present? }
+
+  # нельзя регистрировать существующий адрес
+  validate :not_repeat_email, unless: -> { user.present? }
   # переопределяем метод, если есть юзер, выдаем его имя,
   # если нет -- дергаем исходный переопределенный метод
   def user_name
@@ -40,5 +44,9 @@ class Subscription < ApplicationRecord
     if user.id == @event.user_id
       errors.add(:user, 'Автору нельзя!')
     end
+  end
+
+  def not_repeat_email
+    User.where(user_email, user: true)
   end
 end
