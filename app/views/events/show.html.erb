@@ -17,10 +17,10 @@
           <% if current_user_can_edit?(@event) %>
             <div class="buffer-top">
               <%= link_to 'Изменить', edit_event_path(@event),
-                        class: 'btn btn-primary' %>
+                        class: 'btn btn-primary m-3' %>
 
               <%= link_to 'Удалить', @event, method: :delete, data: { confirm: t('.are_you_sure') },
-                          class: 'btn btn-danger' %>
+                          class: 'btn btn-danger m-3' %>
             </div>
           <% end %>
         </div>
@@ -47,7 +47,9 @@
         <p><%= render partial: 'users/user', object: @event.user %></p>
       </div>
       <div class="event-subscriptions">
+        <% unless @event.subscriptions.except(@new_subscription).empty? %>
         <h4>Пойдут:</h4>
+        <% end %>
         <div>
           <p>
             <%= render partial: 'subscriptions/subscription',
