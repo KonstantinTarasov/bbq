@@ -15,10 +15,10 @@ class Subscription < ApplicationRecord
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
 
   # юзера нельзя подписываться на свои же события
-  validate :user_author, if: -> { user.present? }
+  validate :forbit_author_subscribing, if: -> { user.present? }
 
   # нельзя регистрировать существующий адрес
-  validate :not_repeat_email, unless: -> { user.present? }
+  validate :not_repeat_email, on: :create
   # переопределяем метод, если есть юзер, выдаем его имя,
   # если нет -- дергаем исходный переопределенный метод
   def user_name
@@ -40,13 +40,16 @@ class Subscription < ApplicationRecord
   end
 
   private
-  def user_author
-    if user.id == @event.user_id
-      errors.add(:user, 'Автору нельзя!')
+
+  def forbit_author_subscribing
+    if user.id == event.user_id
+      errors.add(:user, 'models.subscription.forbit')
     end
   end
 
   def not_repeat_email
-    User.where(user_email, user: true)
+    if User.exists?(email: user_email)
+    errors.add(:email, I18n.t('models.subscription.email'))
+    end
   end
 end
