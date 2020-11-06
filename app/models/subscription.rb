@@ -49,7 +49,7 @@ class Subscription < ApplicationRecord
 
   def not_repeat_email
     if User.where(email: user_email).any?
-    errors.add(:email, I18n.t('models.subscription.email'))
+    errors.add(:user_email, I18n.t('models.subscription.email'))
     end
   end
 end
