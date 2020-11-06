@@ -15,7 +15,7 @@ class Subscription < ApplicationRecord
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
 
   # юзера нельзя подписываться на свои же события
-  validate :forbit_author_subscribing, if: -> { user.present? }
+  validate :forbit_author_subscribing, unless: -> { user.present? }
 
   # нельзя регистрировать существующий адрес
   validate :not_repeat_email, on: :create
@@ -42,13 +42,13 @@ class Subscription < ApplicationRecord
   private
 
   def forbit_author_subscribing
-    if user.id == event.user_id
+    if user_id == event.user_id
       errors.add(:user, 'models.subscription.forbit')
     end
   end
 
   def not_repeat_email
-    if User.exists?(email: user_email)
+    if User.where(email: user_email).any?
     errors.add(:email, I18n.t('models.subscription.email'))
     end
   end
