@@ -1,24 +1,23 @@
-# README
+# Шашлыки
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Программа для приглашения друзей на встречу
 
-Things you may want to cover:
+### Версия Ruby
 
-* Ruby version
+* 2.7.0
 
-* System dependencies
+### Версия Rails
 
-* Configuration
+* 6.0.3
 
-* Database creation
+### Инструкция по развертыванию
 
-* Database initialization
+* bundle
+* yarn install
+* rake db:migrate
+* rails s
+* 0.0.0.0:3000
 
-* How to run the test suite
+### Приложение на Heroku
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Шашлыки](https://hot-bbq.herokuapp.com/)
